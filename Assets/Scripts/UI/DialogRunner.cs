@@ -21,6 +21,8 @@ namespace SetSailBoi.Scripts.UI
         [SerializeField]
         private DialogScriptable _dialogData;
 
+        private bool _ran = false;
+
         private void Awake()
         {
             if (instance != null)
@@ -36,9 +38,14 @@ namespace SetSailBoi.Scripts.UI
 
         private void Update()
         {
-            if (Input.GetKeyDown("space"))
+            if(Time.timeSinceLevelLoad < 3)
+            {
+                return;
+            }
+            if (!_ran)
             {
                 RunDialog(0);
+                _ran = true;
             }
         }
 
