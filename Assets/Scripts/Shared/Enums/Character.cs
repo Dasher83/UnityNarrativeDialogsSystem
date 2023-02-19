@@ -1,6 +1,6 @@
 namespace SetSailBoi.Scripts.Shared.Enums
 {
-    public enum Characters
+    public enum Character
     {
         OldMan,
         YoungMan

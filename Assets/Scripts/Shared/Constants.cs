@@ -15,5 +15,11 @@ namespace SetSailBoi.Scripts.Shared
             public const float FadeDuration = .5f;
             public const float DialogueDuration = 4f;
         }
+
+        public static class Dialogs
+        {
+            public const float DefaultDelay = 0.5f;
+            public const float DefaultDuration = 4f;
+        }
     }
 }

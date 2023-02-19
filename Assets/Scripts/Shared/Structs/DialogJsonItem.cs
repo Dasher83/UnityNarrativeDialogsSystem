@@ -9,7 +9,7 @@ namespace SetSailBoi.Scripts.Shared.Structs
         public int character;
         public string text;
 
-        public DialogJsonItem(Characters character, string text)
+        public DialogJsonItem(Character character, string text)
         {
             this.character = (int)character;
             this.text = text;

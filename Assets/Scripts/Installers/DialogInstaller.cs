@@ -42,7 +42,7 @@ namespace SetSailBoi.Scripts.Installers
                 for(int i = 0; i < chapter.Length; i++)
                 {
                     DialogParams dialogParamsObj = new DialogParams();
-                    if ((Characters)chapter[i].character == Characters.OldMan)
+                    if ((Character)chapter[i].character == Character.OldMan)
                     {
                         dialogParamsObj.setDialogText = oldMan.GetComponent<SetDialogText>();
                         dialogParamsObj.canvasGroup = oldMan.GetComponent<CanvasGroup>();
