@@ -18,5 +18,9 @@ namespace SetSailBoi.Scripts.Shared.Structs
         public float Delay => _useCustomDelay ? _delay : Constants.Dialogs.DefaultDelay;
 
         public float Duration => _useCustomDuration ? _duration : Constants.Dialogs.DefaultDuration;
+
+        public Character Character => _character;
+
+        public string Text => _text;
     }
 }

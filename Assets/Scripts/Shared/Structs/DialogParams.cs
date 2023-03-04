@@ -7,7 +7,6 @@ namespace SetSailBoi.Scripts.Shared.Structs
     {
         public float delay;
         public float duration;
-        public SetDialogText setDialogText;
         public CanvasGroup canvasGroup;
         public string text;
 
@@ -15,7 +14,6 @@ namespace SetSailBoi.Scripts.Shared.Structs
         {
             this.delay = delay;
             this.duration = duration;
-            this.setDialogText = character.GetComponent<SetDialogText>();
             this.canvasGroup = character.GetComponent<CanvasGroup>();
             this.text = text;
         }

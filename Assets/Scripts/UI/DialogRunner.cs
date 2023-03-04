@@ -1,8 +1,11 @@
-using SetSailBoi.Scripts.Installers;
+using SetSailBoi.Scripts.Shared;
+using SetSailBoi.Scripts.Shared.Enums;
 using SetSailBoi.Scripts.Shared.ScriptableObjectsDefinitions;
 using SetSailBoi.Scripts.Shared.Structs;
 using SetSailBoi.Scripts.UI.Shared;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -12,28 +15,25 @@ namespace SetSailBoi.Scripts.UI
     {
         public static DialogRunner instance;
 
-        [SerializeField]
-        private GameObject _oldMan;
-
-        [SerializeField]
-        private GameObject _youngBoy;
-
-        [SerializeField]
-        private DialogScriptable _dialogData;
+        [SerializeField] private CanvasGroup _oldManCanvasGroup;
+        [SerializeField] private CanvasGroup _youngBoyCanvasGroup;
+        [SerializeField] private TextMeshProUGUI _oldManText;
+        [SerializeField] private TextMeshProUGUI _youngBoyText;
+        [SerializeField] private DialogLibraryScriptable _dialogLibraryData;
+        private DialogElement _currentDialog;
+        private List<IEnumerator> corutines = new List<IEnumerator>();
 
         private bool _ran = false;
 
         private void Awake()
         {
+            _oldManCanvasGroup.alpha = 0;
+            _youngBoyCanvasGroup.alpha = 0;
+
             if (instance != null)
                 return;
 
-            Debug.Log("instancing");
             instance = this;
-            new DialogInstaller().LoadDialogs(
-                oldMan: _oldMan,
-                youngBoy: _youngBoy,
-                dialogData: _dialogData);
         }
 
         private void Update()
@@ -44,73 +44,54 @@ namespace SetSailBoi.Scripts.UI
             }
             if (!_ran)
             {
-                RunDialog(0);
+                StartCoroutine(RunDialog());
                 _ran = true;
             }
         }
 
-        public void RunDialog(int chapterIndex)
+        public IEnumerator RunDialog(DialogSequenceID dialogSequenceID = DialogSequenceID.StoryChapter1)
         {
-            StartCoroutine(RunDialogCorutine(chapterIndex));
-        }
+            DialogSequenceScriptable dialogSequence = _dialogLibraryData.Find(dialogSequenceID);
 
-        public IEnumerator RunDialogCorutine(int chapterIndex)
-        {
-            StartCoroutine(ShowDialog(_dialogData.ChaptersCollection[chapterIndex][0]));
-            UpdateDialogText(_dialogData.ChaptersCollection[chapterIndex][0]);
-            yield return new WaitForSeconds(_dialogData.ChaptersCollection[chapterIndex][0].duration);
-
-            for(var i = 0; i < _dialogData.ChaptersCollection[chapterIndex].Count; i++)
+            for (int i = 0; i < dialogSequence.DialogElements.Count; i++)
             {
-                if (CharactersChanged(chapterIndex, i))
+                UpdateText(dialogSequence.DialogElements[i]);
+
+                if (dialogSequence.CharactersChanged(i))
                 {
-                    StartCoroutine(ShowDialog(_dialogData.ChaptersCollection[chapterIndex][i]));
-                    yield return new WaitForSeconds(_dialogData.ChaptersCollection[chapterIndex][i].duration);
+                    IEnumerator showDialogCoroutine = ShowDialog(dialogSequence.DialogElements[i]);
+                    yield return StartCoroutine(showDialogCoroutine);
                 }
 
-                UpdateDialogText(_dialogData.ChaptersCollection[chapterIndex][i]);
-                yield return new WaitForSeconds(_dialogData.ChaptersCollection[chapterIndex][i].delay);
+                yield return new WaitForSeconds(Constants.Fader.DialogueDuration);
 
-                if (i < _dialogData.ChaptersCollection[chapterIndex].Count - 1 &&
-                    _dialogData.ChaptersCollection[chapterIndex][i].canvasGroup.gameObject !=
-                    _dialogData.ChaptersCollection[chapterIndex][i + 1].canvasGroup.gameObject)
-                {
-                    StartCoroutine(HideDialog(_dialogData.ChaptersCollection[chapterIndex][i], chapterIndex));
-                    yield return new WaitForSeconds(_dialogData.ChaptersCollection[chapterIndex][i].duration);
-                }
-                else if(i != _dialogData.ChaptersCollection[chapterIndex].Count - 1)
-                {
-                    yield return new WaitForSeconds(_dialogData.ChaptersCollection[chapterIndex][i].delay);
-                }
-                else
-                {
-                    StartCoroutine(HideDialog(_dialogData.ChaptersCollection[chapterIndex][i], chapterIndex));
-                    yield return new WaitForSeconds(_dialogData.ChaptersCollection[chapterIndex][i].duration);
-                }
+                IEnumerator hideDialogCorutine = HideDialog(dialogSequence.DialogElements[i]);
+                yield return StartCoroutine(hideDialogCorutine);
             }
         }
 
-        bool CharactersChanged(int chapterIndex, int i)
+        private void UpdateText(DialogElement dialogElement)
         {
-            var dialog = _dialogData.ChaptersCollection[chapterIndex];
-            return i > 0 && dialog[i].canvasGroup.gameObject != dialog[i - 1].canvasGroup.gameObject;
+            if (dialogElement.Character == Character.OldMan)
+            {
+                _oldManText.text = dialogElement.Text;
+            }
+            else
+            {
+                _youngBoyText.text = dialogElement.Text;
+            }
         }
 
-        private void UpdateDialogText(DialogParams currentDialog)
+        private IEnumerator ShowDialog(DialogElement dialogElement)
         {
-            currentDialog.setDialogText.Text = currentDialog.text;
+            IEnumerator fadeInCorrutine = Fader.instance.FadeIn(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
+            yield return StartCoroutine(fadeInCorrutine);
         }
 
-        private IEnumerator ShowDialog(DialogParams currentDialog)
+        private IEnumerator HideDialog(DialogElement dialogElement)
         {
-            Fader.instance.FadeIn(currentDialog.canvasGroup);
-            yield return null;
-        }
-
-        private IEnumerator HideDialog(DialogParams currentDialog, int chapterIndex)
-        {
-            Fader.instance.FadeOut(currentDialog.canvasGroup);
-            yield return null;
+            IEnumerator fadeOutCorrutine = Fader.instance.FadeOut(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
+            yield return StartCoroutine(fadeOutCorrutine);
         }
     }
 }

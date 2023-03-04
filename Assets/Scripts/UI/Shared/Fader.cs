@@ -1,7 +1,6 @@
-using System.Threading;
 using SetSailBoi.Scripts.Shared;
-using System.Threading.Tasks;
 using UnityEngine;
+using System.Collections;
 
 
 namespace SetSailBoi.Scripts.UI.Shared
@@ -9,8 +8,6 @@ namespace SetSailBoi.Scripts.UI.Shared
     public class Fader : MonoBehaviour
     {
         public static Fader instance;
-        
-        CancellationTokenSource cancellationSource = new();
 
         private void Awake()
         {
@@ -24,32 +21,27 @@ namespace SetSailBoi.Scripts.UI.Shared
             }
         }
 
-        void OnDestroy()
+        public IEnumerator FadeOut(CanvasGroup canvasGroup)
         {
-            cancellationSource.Cancel();
+            IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, startAlpha: 1, endAlpha: 0);
+            yield return StartCoroutine(changeAlphaCorrutine);
         }
 
-        public async Task FadeOut(CanvasGroup canvasGroup)
+        public IEnumerator FadeIn(CanvasGroup canvasGroup)
         {
-            await ChangeAlpha(canvasGroup, startAlpha: 1, endAlpha: 0);
+            IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, startAlpha: 0, endAlpha: 1);
+            yield return StartCoroutine(changeAlphaCorrutine);
         }
 
-        public async Task FadeIn(CanvasGroup canvasGroup)
+        private IEnumerator ChangeAlpha(CanvasGroup canvasGroup, float startAlpha, float endAlpha)
         {
-            await ChangeAlpha(canvasGroup, startAlpha: 0, endAlpha: 1);
-        }
-
-        private async Task ChangeAlpha(CanvasGroup canvasGroup, float startAlpha, float endAlpha)
-        {
-            var cancellation = cancellationSource.Token;
-            await Task.Delay((int)Constants.Fader.DialogueDuration * 1000, cancellation);
             float elapsed = 0f;
             while (elapsed < Constants.Fader.FadeDuration)
             {
                 elapsed += Time.deltaTime;
                 float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / Constants.Fader.FadeDuration);
                 canvasGroup.alpha = currentAlpha;
-                await Task.Yield();
+                yield return null;
             }
         }
     }

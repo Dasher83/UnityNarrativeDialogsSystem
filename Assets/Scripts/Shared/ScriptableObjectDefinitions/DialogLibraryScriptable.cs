@@ -1,27 +1,25 @@
-using SetSailBoi.Scripts.Shared.Structs;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace SetSailBoi.Scripts.Shared.ScriptableObjectsDefinitions
 {
-    [CreateAssetMenu(fileName = "DialogData", menuName = "ScriptableObjects/DialogData", order = 0)]
+    [CreateAssetMenu(fileName = "DialogLibraryData", menuName = "ScriptableObjects/DialogLibraryData", order = 1)]
     public class DialogLibraryScriptable : ScriptableObject
     {
-        [SerializeField]
-        private List<List<DialogParams>> chaptersCollection;
+        [SerializeField] private List<DialogSequenceScriptable> _dialogSequences;
 
-        public List<List<DialogParams>> ChaptersCollection
+        public DialogSequenceScriptable Find(DialogSequenceID dialogSequenceID)
         {
-            get
+            foreach(DialogSequenceScriptable dialogSequence in _dialogSequences)
             {
-                return chaptersCollection;
+                if(dialogSequence.Id == dialogSequenceID)
+                {
+                    return dialogSequence;
+                }
             }
-            
-            set
-            {
-                chaptersCollection = value;
-            }
+
+            return null;
         }
     }
 }
