@@ -19,6 +19,7 @@ namespace SetSailBoi.Scripts.UI
         [SerializeField] private TextMeshProUGUI _oldManText;
         [SerializeField] private TextMeshProUGUI _youngBoyText;
         [SerializeField] private DialogLibraryScriptable _dialogLibraryData;
+        [SerializeField] private DialogSequenceID[] dialogsToPlay;
         private CoroutineQueue _queue;
 
         private bool _ran = false;
@@ -37,13 +38,15 @@ namespace SetSailBoi.Scripts.UI
             }
             if (!_ran)
             {
-                _queue.Enqueue(RunDialog());
-                _queue.Enqueue(RunDialog());
+                foreach (DialogSequenceID dialogSequenceID in dialogsToPlay)
+                {
+                    _queue.Enqueue(RunDialog(dialogSequenceID));
+                }
                 _ran = true;
             }
         }
 
-        public IEnumerator RunDialog(DialogSequenceID dialogSequenceID = DialogSequenceID.StoryChapter1)
+        public IEnumerator RunDialog(DialogSequenceID dialogSequenceID)
         {
             DialogSequenceScriptable dialogSequence = _dialogLibraryData.Find(dialogSequenceID);
 

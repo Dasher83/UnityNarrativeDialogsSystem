@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogSequences:
   - {fileID: 11400000, guid: 20e955bc717fe3741ade902daa9ce7fc, type: 2}
+  - {fileID: 11400000, guid: a030832268f3e3c48ae8a1130537fe47, type: 2}

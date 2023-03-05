@@ -835,6 +835,14 @@ PrefabInstance:
       propertyPath: _youngBoyCanvasGroup
       value: 
       objectReference: {fileID: 1255400488}
+    - target: {fileID: 1860521188166508340, guid: 01e6e95645e49134691fe7f6767e920f, type: 3}
+      propertyPath: dialogsToPlay.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860521188166508340, guid: 01e6e95645e49134691fe7f6767e920f, type: 3}
+      propertyPath: dialogsToPlay.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1860521188166508341, guid: 01e6e95645e49134691fe7f6767e920f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -908,6 +916,14 @@ PrefabInstance:
       propertyPath: _youngBoyCanvasGroup
       value: 
       objectReference: {fileID: 2423033046391479126}
+    - target: {fileID: 1860521188166508340, guid: 01e6e95645e49134691fe7f6767e920f, type: 3}
+      propertyPath: dialogsToPlay.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860521188166508340, guid: 01e6e95645e49134691fe7f6767e920f, type: 3}
+      propertyPath: dialogsToPlay.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1860521188166508341, guid: 01e6e95645e49134691fe7f6767e920f, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2972d9b5e1064af4282e8cdf5f588626, type: 3}
+  m_Name: Chapter2
+  m_EditorClassIdentifier: 
+  _id: 1
+  _dialogElements:
+  - _useCustomDelay: 0
+    _delay: 0
+    _useCustomDuration: 0
+    _duration: 0
+    _character: 0
+    _text: The storm passed finally. Boy, are you okay?
+  - _useCustomDelay: 0
+    _delay: 0
+    _useCustomDuration: 0
+    _duration: 0
+    _character: 1
+    _text: Yes dad, I'm just a little shaken up ...
+  - _useCustomDelay: 0
+    _delay: 0
+    _useCustomDuration: 0
+    _duration: 0
+    _character: 0
+    _text: Go rest a bit, I'll hold the fort
