@@ -6,13 +6,12 @@ using Unity.VisualScripting;
 public class CoroutineQueue
 {
     private Queue<IEnumerator> _queue;
-    private CoroutineRunnerPool _runnerPool; // Should we make this a singleton?
-    private CoroutineRunner _currentRunner;
+    private readonly CoroutineRunner _runner;
 
-    public CoroutineQueue()
+    public CoroutineQueue(CoroutineRunner runner)
     {
         _queue = new Queue<IEnumerator>();
-        _runnerPool = new CoroutineRunnerPool();
+        _runner = runner;
     }
 
     public void Enqueue(IEnumerator coroutine)
@@ -22,11 +21,7 @@ public class CoroutineQueue
 
     public void Start()
     {
-        if (_currentRunner == null)
-        {
-            _currentRunner = _runnerPool.GetRunner();
-        }
-        new CoroutineQueueRunner(_currentRunner).Run(_queue);
+        new CoroutineQueueRunner(_runner).Run(_queue);
     }
 
     private class CoroutineQueueRunner

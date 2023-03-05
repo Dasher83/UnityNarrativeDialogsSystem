@@ -4,7 +4,6 @@ using SetSailBoi.Scripts.Shared.ScriptableObjectsDefinitions;
 using SetSailBoi.Scripts.Shared.Structs;
 using SetSailBoi.Scripts.UI.Shared;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -20,15 +19,13 @@ namespace SetSailBoi.Scripts.UI
         [SerializeField] private TextMeshProUGUI _oldManText;
         [SerializeField] private TextMeshProUGUI _youngBoyText;
         [SerializeField] private DialogLibraryScriptable _dialogLibraryData;
-        private CoroutineQueue _queue = new CoroutineQueue();
+        private CoroutineQueue _queue;
 
         private bool _ran = false;
 
         private void Awake()
         {
-            if (instance != null)
-                return;
-
+            this._queue = new CoroutineQueue(runner: FindObjectOfType<CoroutineRunnerPool>().GetRunner());
             instance = this;
         }
 

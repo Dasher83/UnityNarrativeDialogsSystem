@@ -3,10 +3,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class CoroutineRunnerPool
+public class CoroutineRunnerPool: MonoBehaviour
 {
+    public static CoroutineRunnerPool Instance { get; private set; }
+
     private readonly Queue<CoroutineRunner> _availableRunners = new Queue<CoroutineRunner>();
     private readonly List<CoroutineRunner> _inUseRunners = new List<CoroutineRunner>();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            enabled = false;
+            return;
+        }
+    }
 
     public CoroutineRunner GetRunner()
     {
