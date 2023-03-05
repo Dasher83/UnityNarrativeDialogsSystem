@@ -1,50 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
 
 
-public class CoroutineQueue
+public class CoroutineQueue: MonoBehaviour
 {
     private Queue<IEnumerator> _queue;
-    private readonly CoroutineRunner _runner;
+    private bool _isExecuting;
 
-    public CoroutineQueue(CoroutineRunner runner)
+    private void Awake()
     {
         _queue = new Queue<IEnumerator>();
-        _runner = runner;
+        _isExecuting = false;
     }
 
     public void Enqueue(IEnumerator coroutine)
     {
         _queue.Enqueue(coroutine);
+
+        if (!_isExecuting)
+        {
+            CoroutineRunner.instance.StartCoroutine(ExecuteQueue());
+        }
     }
 
-    public void Start()
+    private IEnumerator ExecuteQueue()
     {
-        new CoroutineQueueRunner(_runner).Run(_queue);
-    }
+        _isExecuting = true;
 
-    private class CoroutineQueueRunner
-    {
-        private CoroutineRunner _runner;
-
-        private CoroutineQueueRunner() { }
-        public CoroutineQueueRunner(CoroutineRunner runner)
+        while(_queue.Count > 0)
         {
-            _runner = runner;
+            yield return CoroutineRunner.instance.StartCoroutine(_queue.Dequeue());
         }
 
-        public void Run(Queue<IEnumerator> queue)
-        {
-            _runner.StartCoroutine(RunCoroutine(queue));
-        }
-
-        private IEnumerator RunCoroutine(Queue<IEnumerator> queue)
-        {
-            while(queue.Count > 0)
-            {
-                yield return _runner.StartCoroutine(queue.Dequeue());
-            }
-        }
+        _isExecuting = false;
     }
 }

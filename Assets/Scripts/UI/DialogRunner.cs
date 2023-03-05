@@ -25,7 +25,7 @@ namespace SetSailBoi.Scripts.UI
 
         private void Awake()
         {
-            this._queue = new CoroutineQueue(runner: FindObjectOfType<CoroutineRunnerPool>().GetRunner());
+            this._queue = GetComponent<CoroutineQueue>();
             instance = this;
         }
 
@@ -39,7 +39,6 @@ namespace SetSailBoi.Scripts.UI
             {
                 _queue.Enqueue(RunDialog());
                 _queue.Enqueue(RunDialog());
-                _queue.Start();
                 _ran = true;
             }
         }
