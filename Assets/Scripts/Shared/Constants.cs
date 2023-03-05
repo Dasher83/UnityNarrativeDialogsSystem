@@ -2,12 +2,6 @@ namespace SetSailBoi.Scripts.Shared
 {
     public static class Constants
     {
-        public static class Scenes
-        {
-            public static string MainGameScene = "SampleScene";
-            public static string MainMenuScene = "MainMenu";
-        }
-
         public static class Fader
         {
             public const float StartAlpha = 1f;
