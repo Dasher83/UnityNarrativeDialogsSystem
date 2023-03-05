@@ -19,17 +19,16 @@ MonoBehaviour:
     _useCustomDuration: 0
     _duration: 0
     _character: 0
-    _text: The first memento, the bottle of poisoned rum that was used to take out
-      the Captain of the Black Yard.
+    _text: Hey boy! A storm is coming, brace yourself!
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 1
-    _text: He drank it all, and said "I'm fine"...
+    _text: Aye, Aye, Captain !
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 0
-    _text: ...and so they shot him until he was dead.
+    _text: To the eye of the storm we go !
