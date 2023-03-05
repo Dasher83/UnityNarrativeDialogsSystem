@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -21,7 +20,7 @@ public class CoroutineQueue: MonoBehaviour
 
         if (!_isExecuting)
         {
-            CoroutineRunner.instance.StartCoroutine(ExecuteQueue());
+            StartCoroutine(ExecuteQueue());
         }
     }
 
@@ -31,7 +30,7 @@ public class CoroutineQueue: MonoBehaviour
 
         while(_queue.Count > 0)
         {
-            yield return CoroutineRunner.instance.StartCoroutine(_queue.Dequeue());
+            yield return StartCoroutine(_queue.Dequeue());
         }
 
         _isExecuting = false;
