@@ -65,8 +65,11 @@ namespace SetSailBoi.Scripts.UI
 
                 yield return new WaitForSeconds(Constants.Fader.DialogueDuration);
 
-                IEnumerator hideDialogCorutine = HideDialog(dialogSequence.DialogElements[i]);
-                yield return StartCoroutine(hideDialogCorutine);
+                if (dialogSequence.CharactersWillChange(i))
+                {
+                    IEnumerator hideDialogCorutine = HideDialog(dialogSequence.DialogElements[i]);
+                    yield return StartCoroutine(hideDialogCorutine);
+                }
             }
         }
 

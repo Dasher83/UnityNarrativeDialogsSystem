@@ -20,5 +20,11 @@ namespace SetSailBoi.Scripts.Shared.ScriptableObjectsDefinitions
         {
             return indexOfDialogElement == 0 || _dialogElements[indexOfDialogElement - 1].Character != _dialogElements[indexOfDialogElement].Character;
         }
+
+        public bool CharactersWillChange(int indexOfDialogElement)
+        {
+            return indexOfDialogElement == _dialogElements.Length - 1 ||
+                _dialogElements[indexOfDialogElement].Character != _dialogElements[indexOfDialogElement + 1].Character;
+        }
     }
 }
