@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Unity.VisualScripting;
 
 
 public class CoroutineQueue
 {
     private Queue<IEnumerator> _queue;
+    private CoroutineRunnerPool _runnerPool; // Should we make this a singleton?
+    private CoroutineRunner _currentRunner;
 
     public CoroutineQueue()
     {
         _queue = new Queue<IEnumerator>();
+        _runnerPool = new CoroutineRunnerPool();
     }
 
     public void Enqueue(IEnumerator coroutine)
@@ -19,38 +22,33 @@ public class CoroutineQueue
 
     public void Start()
     {
-        CoroutineRunner runner = CoroutineRunner.Instance;
-        runner.Run(_queue);
+        if (_currentRunner == null)
+        {
+            _currentRunner = _runnerPool.GetRunner();
+        }
+        new CoroutineQueueRunner(_currentRunner).Run(_queue);
     }
 
-    private class CoroutineRunner : MonoBehaviour
+    private class CoroutineQueueRunner
     {
-        private static CoroutineRunner instance;
+        private CoroutineRunner _runner;
 
-        public static CoroutineRunner Instance
+        private CoroutineQueueRunner() { }
+        public CoroutineQueueRunner(CoroutineRunner runner)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    GameObject singletonGameObject = new GameObject("CoroutineRunner");
-                    instance = singletonGameObject.AddComponent<CoroutineRunner>();
-                }
-                return instance;
-            }
+            _runner = runner;
         }
-
 
         public void Run(Queue<IEnumerator> queue)
         {
-            StartCoroutine(RunCoroutine(queue));
+            _runner.StartCoroutine(RunCoroutine(queue));
         }
 
         private IEnumerator RunCoroutine(Queue<IEnumerator> queue)
         {
             while(queue.Count > 0)
             {
-                yield return StartCoroutine(queue.Dequeue());
+                yield return _runner.StartCoroutine(queue.Dequeue());
             }
         }
     }
