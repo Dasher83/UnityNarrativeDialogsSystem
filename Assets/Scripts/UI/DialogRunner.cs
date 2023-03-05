@@ -20,16 +20,12 @@ namespace SetSailBoi.Scripts.UI
         [SerializeField] private TextMeshProUGUI _oldManText;
         [SerializeField] private TextMeshProUGUI _youngBoyText;
         [SerializeField] private DialogLibraryScriptable _dialogLibraryData;
-        private DialogElement _currentDialog;
-        private List<IEnumerator> corutines = new List<IEnumerator>();
+        private CoroutineQueue _queue = new CoroutineQueue();
 
         private bool _ran = false;
 
         private void Awake()
         {
-            _oldManCanvasGroup.alpha = 0;
-            _youngBoyCanvasGroup.alpha = 0;
-
             if (instance != null)
                 return;
 
@@ -44,7 +40,9 @@ namespace SetSailBoi.Scripts.UI
             }
             if (!_ran)
             {
-                StartCoroutine(RunDialog());
+                _queue.Enqueue(RunDialog());
+                _queue.Enqueue(RunDialog());
+                _queue.Start();
                 _ran = true;
             }
         }
