@@ -2,6 +2,7 @@ using NarrativeDialogs.Scripts.Shared;
 using NarrativeDialogs.Scripts.Shared.Enums;
 using NarrativeDialogs.Scripts.Shared.ScriptableObjectDefinitions;
 using NarrativeDialogs.Scripts.Shared.Structs;
+using NarrativeDialogs.Scripts.Shared.Utils;
 using NarrativeDialogs.Scripts.UI.Shared;
 using System.Collections;
 using TMPro;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace NarrativeDialogs.Scripts
+namespace NarrativeDialogs.Scripts.Shared.Utils
 {
     public class CoroutineQueue : MonoBehaviour
     {
