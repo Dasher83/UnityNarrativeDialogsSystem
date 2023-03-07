@@ -7,20 +7,6 @@ namespace NarrativeDialogs.Scripts.UI.Shared
 {
     public class Fader : MonoBehaviour
     {
-        public static Fader instance;
-
-        private void Awake()
-        {
-            if (instance != null)
-            {
-                return;
-            }
-            else
-            {
-                instance = this;
-            }
-        }
-
         public IEnumerator FadeOut(CanvasGroup canvasGroup)
         {
             IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, startAlpha: 1, endAlpha: 0);

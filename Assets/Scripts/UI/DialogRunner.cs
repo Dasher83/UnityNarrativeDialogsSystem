@@ -21,6 +21,7 @@ namespace NarrativeDialogs.Scripts.UI
         [SerializeField] private TextMeshProUGUI _youngBoyText;
         [SerializeField] private DialogLibraryScriptable _dialogLibraryData;
         [SerializeField] private DialogSequenceID[] dialogsToPlay;
+        [SerializeField] private Fader _fader;
         private CoroutineQueue _queue;
 
         private bool _ran = false;
@@ -85,13 +86,13 @@ namespace NarrativeDialogs.Scripts.UI
 
         private IEnumerator ShowDialog(DialogElement dialogElement)
         {
-            IEnumerator fadeInCorrutine = Fader.instance.FadeIn(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
+            IEnumerator fadeInCorrutine = _fader.FadeIn(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
             yield return StartCoroutine(fadeInCorrutine);
         }
 
         private IEnumerator HideDialog(DialogElement dialogElement)
         {
-            IEnumerator fadeOutCorrutine = Fader.instance.FadeOut(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
+            IEnumerator fadeOutCorrutine = _fader.FadeOut(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
             yield return StartCoroutine(fadeOutCorrutine);
         }
     }
