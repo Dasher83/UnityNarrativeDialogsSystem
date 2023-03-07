@@ -1,4 +1,4 @@
-namespace SetSailBoi.Scripts.Shared.Enums
+namespace NarrativeDialogs.Scripts.Shared.Enums
 {
     public enum Character
     {

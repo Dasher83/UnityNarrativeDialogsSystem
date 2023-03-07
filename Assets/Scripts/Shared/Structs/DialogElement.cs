@@ -1,9 +1,9 @@
-using SetSailBoi.Scripts.Shared.Enums;
+using NarrativeDialogs.Scripts.Shared.Enums;
 using System;
 using UnityEngine;
 
 
-namespace SetSailBoi.Scripts.Shared.Structs
+namespace NarrativeDialogs.Scripts.Shared.Structs
 {
     [Serializable]
     public class DialogElement

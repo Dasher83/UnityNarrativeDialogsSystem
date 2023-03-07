@@ -1,10 +1,11 @@
-using SetSailBoi.Scripts.Shared.Structs;
+using NarrativeDialogs.Scripts.Shared.Enums;
+using NarrativeDialogs.Scripts.Shared.Structs;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 
-namespace SetSailBoi.Scripts.Shared.ScriptableObjectsDefinitions
+namespace NarrativeDialogs.Scripts.Shared.ScriptableObjectDefinitions
 {
     [CreateAssetMenu(fileName = "DialogSequenceData", menuName = "ScriptableObjects/DialogSequenceScriptable", order = 0)]
     public class DialogSequenceScriptable : ScriptableObject

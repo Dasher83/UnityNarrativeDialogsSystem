@@ -1,14 +1,14 @@
-using SetSailBoi.Scripts.Shared;
-using SetSailBoi.Scripts.Shared.Enums;
-using SetSailBoi.Scripts.Shared.ScriptableObjectsDefinitions;
-using SetSailBoi.Scripts.Shared.Structs;
-using SetSailBoi.Scripts.UI.Shared;
+using NarrativeDialogs.Scripts.Shared;
+using NarrativeDialogs.Scripts.Shared.Enums;
+using NarrativeDialogs.Scripts.Shared.ScriptableObjectDefinitions;
+using NarrativeDialogs.Scripts.Shared.Structs;
+using NarrativeDialogs.Scripts.UI.Shared;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 
-namespace SetSailBoi.Scripts.UI
+namespace NarrativeDialogs.Scripts.UI
 {
     public class DialogRunner : MonoBehaviour
     {

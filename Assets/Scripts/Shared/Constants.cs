@@ -1,4 +1,4 @@
-namespace SetSailBoi.Scripts.Shared
+namespace NarrativeDialogs.Scripts.Shared
 {
     public static class Constants
     {

@@ -1,9 +1,9 @@
-using SetSailBoi.Scripts.Shared;
 using UnityEngine;
 using System.Collections;
+using NarrativeDialogs.Scripts.Shared;
 
 
-namespace SetSailBoi.Scripts.UI.Shared
+namespace NarrativeDialogs.Scripts.UI.Shared
 {
     public class Fader : MonoBehaviour
     {

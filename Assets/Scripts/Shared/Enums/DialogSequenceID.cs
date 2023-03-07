@@ -1,5 +1,8 @@
-public enum DialogSequenceID
+namespace NarrativeDialogs.Scripts.Shared.Enums
 {
-    StoryChapter1,    
-    StoryChapter2,    
+    public enum DialogSequenceID
+    {
+        StoryChapter1,
+        StoryChapter2,
+    }
 }
