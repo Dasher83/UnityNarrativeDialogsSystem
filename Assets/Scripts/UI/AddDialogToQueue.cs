@@ -1,3 +1,4 @@
+using NarrativeDialogs.Scripts.Shared.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ namespace NarrativeDialogs.Scripts.UI
     public class AddDialogToQueue : MonoBehaviour
     {
         [SerializeField] private UIQueue _uiQueue;
+        [SerializeField] private DialogSequenceID _dialogSequenceID;
         private Button _button;
         private TextMeshProUGUI _textField;
         private string _shortText;
@@ -23,7 +25,7 @@ namespace NarrativeDialogs.Scripts.UI
 
         public void Add()
         {
-            _uiQueue.CreateNewQueueItem(_shortText);
+            _uiQueue.CreateNewQueueItem(_shortText, _dialogSequenceID);
         }
     }
 }

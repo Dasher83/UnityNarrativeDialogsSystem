@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiQueue: {fileID: 26050721}
+  _dialogSequenceID: 2
+  _dialogRunner: {fileID: 0}
 --- !u!1 &4740860233337640810
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiQueue: {fileID: 26050721}
+  _dialogSequenceID: 3
+  _dialogRunner: {fileID: 0}
 --- !u!1 &4740860233575816273
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiQueue: {fileID: 26050721}
+  _dialogSequenceID: 0
+  _dialogRunner: {fileID: 0}
 --- !u!1 &4740860233797594341
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +852,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiQueue: {fileID: 26050721}
+  _dialogSequenceID: 1
+  _dialogRunner: {fileID: 0}
 --- !u!1 &4740860234734702002
 GameObject:
   m_ObjectHideFlags: 0

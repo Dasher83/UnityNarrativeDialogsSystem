@@ -9,6 +9,7 @@ namespace NarrativeDialogs.Scripts.Shared.Utils
     {
         private Queue<IEnumerator> _queue;
         private bool _isExecuting;
+        public event System.Action CoroutineEnded;
 
         private void Awake()
         {
@@ -33,6 +34,7 @@ namespace NarrativeDialogs.Scripts.Shared.Utils
             while (_queue.Count > 0)
             {
                 yield return StartCoroutine(_queue.Dequeue());
+                CoroutineEnded();
             }
 
             _isExecuting = false;

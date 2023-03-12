@@ -20,7 +20,7 @@ namespace NarrativeDialogs.Scripts.Shared.ScriptableObjectDefinitions
                 }
             }
 
-            return null;
+            throw new KeyNotFoundException();
         }
     }
 }

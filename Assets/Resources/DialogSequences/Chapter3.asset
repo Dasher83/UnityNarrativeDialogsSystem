@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2972d9b5e1064af4282e8cdf5f588626, type: 3}
-  m_Name: Chapter1
+  m_Name: Chapter3
   m_EditorClassIdentifier: 
-  _id: 0
+  _id: 2
   _dialogElements:
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 0
-    _text: Chapter 1 Dialog 1
+    _text: Chapter 3 Dialog 1
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 1
-    _text: Chapter 1 Dialog 2
+    _text: Chapter 3 Dialog 2
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 0
-    _text: Chapter 1 Dialog 3
+    _text: Chapter 3 Dialog 3

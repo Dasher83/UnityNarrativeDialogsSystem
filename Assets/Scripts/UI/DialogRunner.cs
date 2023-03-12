@@ -24,31 +24,18 @@ namespace NarrativeDialogs.Scripts.UI
         [SerializeField] private Fader _fader;
         private CoroutineQueue _queue;
 
-        private bool _ran = false;
-
         private void Awake()
         {
             this._queue = GetComponent<CoroutineQueue>();
             instance = this;
         }
 
-        private void Update()
+        public void EnqueueDialog(DialogSequenceID dialogSequenceID)
         {
-            if(Time.timeSinceLevelLoad < 3)
-            {
-                return;
-            }
-            if (!_ran)
-            {
-                foreach (DialogSequenceID dialogSequenceID in dialogsToPlay)
-                {
-                    _queue.Enqueue(RunDialog(dialogSequenceID));
-                }
-                _ran = true;
-            }
+            _queue.Enqueue(RunDialog(dialogSequenceID));
         }
 
-        public IEnumerator RunDialog(DialogSequenceID dialogSequenceID)
+        private IEnumerator RunDialog(DialogSequenceID dialogSequenceID)
         {
             DialogSequenceScriptable dialogSequence = _dialogLibraryData.Find(dialogSequenceID);
 

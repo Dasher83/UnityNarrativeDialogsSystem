@@ -4,5 +4,7 @@ namespace NarrativeDialogs.Scripts.Shared.Enums
     {
         StoryChapter1,
         StoryChapter2,
+        StoryChapter3,
+        StoryChapter4,
     }
 }

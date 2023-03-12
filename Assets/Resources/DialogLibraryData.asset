@@ -15,3 +15,5 @@ MonoBehaviour:
   _dialogSequences:
   - {fileID: 11400000, guid: 20e955bc717fe3741ade902daa9ce7fc, type: 2}
   - {fileID: 11400000, guid: a030832268f3e3c48ae8a1130537fe47, type: 2}
+  - {fileID: 11400000, guid: 5b4e49112d5089b4cb69941ec03ae1f7, type: 2}
+  - {fileID: 11400000, guid: 6d2b9ba59b8005d4e86abf302af555a5, type: 2}

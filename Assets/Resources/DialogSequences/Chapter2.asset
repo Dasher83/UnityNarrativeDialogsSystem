@@ -19,16 +19,16 @@ MonoBehaviour:
     _useCustomDuration: 0
     _duration: 0
     _character: 0
-    _text: The storm passed finally. Boy, are you okay?
+    _text: Chapter 2 Dialog 1
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 1
-    _text: Yes dad, I'm just a little shaken up ...
+    _text: Chapter 2 Dialog 2
   - _useCustomDelay: 0
     _delay: 0
     _useCustomDuration: 0
     _duration: 0
     _character: 0
-    _text: Go rest a bit, I'll hold the fort
+    _text: Chapter 2 Dialog 3
