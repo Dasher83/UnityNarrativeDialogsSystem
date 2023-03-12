@@ -8,16 +8,16 @@ namespace NarrativeDialogs.Scripts.Shared.Structs
     [Serializable]
     public class DialogElement
     {
-        [SerializeField] private bool _useCustomDelay;
-        [SerializeField] private float _delay;
-        [SerializeField] private bool _useCustomDuration;
-        [SerializeField] private float _duration;
+        [SerializeField] private bool _useCustomTimeToRead;
+        [SerializeField] private float _timeToRead;
+        [SerializeField] private bool _useCustomFadeDuration;
+        [SerializeField] private float _fadeDuration;
         [SerializeField] private Character _character;
         [SerializeField] [TextArea] private string _text;
 
-        public float Delay => _useCustomDelay ? _delay : Constants.Dialogs.DefaultDelay;
+        public float TimeToRead => _useCustomTimeToRead ? _timeToRead : Constants.Dialogs.DefaultTimeToRead;
 
-        public float Duration => _useCustomDuration ? _duration : Constants.Dialogs.DefaultDuration;
+        public float FadeDuration => _useCustomFadeDuration ? _fadeDuration : Constants.Dialogs.DefaultFadeDuration;
 
         public Character Character => _character;
 

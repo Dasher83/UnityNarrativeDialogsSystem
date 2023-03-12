@@ -6,14 +6,12 @@ namespace NarrativeDialogs.Scripts.Shared
         {
             public const float StartAlpha = 1f;
             public const float EndAlpha = 0f;
-            public const float FadeDuration = .5f;
-            public const float DialogueDuration = 4f;
         }
 
         public static class Dialogs
         {
-            public const float DefaultDelay = 0.5f;
-            public const float DefaultDuration = 4f;
+            public const float DefaultFadeDuration = 0.5f;
+            public const float DefaultTimeToRead = 4f;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace NarrativeDialogs.Scripts.UI
                     yield return StartCoroutine(showDialogCoroutine);
                 }
 
-                yield return new WaitForSeconds(Constants.Fader.DialogueDuration);
+                yield return new WaitForSeconds(dialogSequence.DialogElements[i].TimeToRead);
 
                 if (dialogSequence.CharactersWillChange(i))
                 {
@@ -73,13 +73,13 @@ namespace NarrativeDialogs.Scripts.UI
 
         private IEnumerator ShowDialog(DialogElement dialogElement)
         {
-            IEnumerator fadeInCorrutine = _fader.FadeIn(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
+            IEnumerator fadeInCorrutine = _fader.FadeIn(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup, dialogElement);
             yield return StartCoroutine(fadeInCorrutine);
         }
 
         private IEnumerator HideDialog(DialogElement dialogElement)
         {
-            IEnumerator fadeOutCorrutine = _fader.FadeOut(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup);
+            IEnumerator fadeOutCorrutine = _fader.FadeOut(dialogElement.Character == Character.OldMan ? _oldManCanvasGroup : _youngBoyCanvasGroup, dialogElement);
             yield return StartCoroutine(fadeOutCorrutine);
         }
     }

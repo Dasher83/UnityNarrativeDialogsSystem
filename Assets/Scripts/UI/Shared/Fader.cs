@@ -1,31 +1,32 @@
 using UnityEngine;
 using System.Collections;
 using NarrativeDialogs.Scripts.Shared;
+using NarrativeDialogs.Scripts.Shared.Structs;
 
 
 namespace NarrativeDialogs.Scripts.UI.Shared
 {
     public class Fader : MonoBehaviour
     {
-        public IEnumerator FadeOut(CanvasGroup canvasGroup)
+        public IEnumerator FadeOut(CanvasGroup canvasGroup, DialogElement dialogElement)
         {
-            IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, startAlpha: 1, endAlpha: 0);
+            IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, dialogElement, startAlpha: 1, endAlpha: 0);
             yield return StartCoroutine(changeAlphaCorrutine);
         }
 
-        public IEnumerator FadeIn(CanvasGroup canvasGroup)
+        public IEnumerator FadeIn(CanvasGroup canvasGroup, DialogElement dialogElement)
         {
-            IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, startAlpha: 0, endAlpha: 1);
+            IEnumerator changeAlphaCorrutine = ChangeAlpha(canvasGroup, dialogElement, startAlpha: 0, endAlpha: 1);
             yield return StartCoroutine(changeAlphaCorrutine);
         }
 
-        private IEnumerator ChangeAlpha(CanvasGroup canvasGroup, float startAlpha, float endAlpha)
+        private IEnumerator ChangeAlpha(CanvasGroup canvasGroup, DialogElement dialogElement, float startAlpha, float endAlpha)
         {
             float elapsed = 0f;
-            while (elapsed < Constants.Fader.FadeDuration)
+            while (elapsed < dialogElement.FadeDuration)
             {
                 elapsed += Time.deltaTime;
-                float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / Constants.Fader.FadeDuration);
+                float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / dialogElement.FadeDuration);
                 canvasGroup.alpha = currentAlpha;
                 yield return null;
             }
