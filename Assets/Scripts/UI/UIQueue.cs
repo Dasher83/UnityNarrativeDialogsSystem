@@ -9,8 +9,12 @@ namespace NarrativeDialogs.Scripts.UI
         [SerializeField] private GameObject _queueItemPrefab;
         private GameObject _newQueueItem;
 
+        private const int MaxItemCount = 7;
+
         public void CreateNewQueueItem(string text)
         {
+            if (gameObject.transform.childCount >= MaxItemCount) return;
+
             _newQueueItem = Instantiate(_queueItemPrefab, gameObject.transform);
             _newQueueItem.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
