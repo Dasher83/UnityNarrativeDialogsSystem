@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 2
   _dialogElements:
-  - _useCustomDelay: 0
-    _delay: 0
-    _useCustomDuration: 0
-    _duration: 0
-    _character: 0
+  - _useCustomTimeToRead: 0
+    _timeToRead: 0
+    _useCustomFadeDuration: 0
+    _fadeDuration: 0
+    _character: 1
     _text: Chapter 3 Dialog 1
-  - _useCustomDelay: 0
-    _delay: 0
-    _useCustomDuration: 0
-    _duration: 0
+  - _useCustomTimeToRead: 0
+    _timeToRead: 0
+    _useCustomFadeDuration: 0
+    _fadeDuration: 0
     _character: 1
     _text: Chapter 3 Dialog 2
-  - _useCustomDelay: 0
-    _delay: 0
-    _useCustomDuration: 0
-    _duration: 0
+  - _useCustomTimeToRead: 0
+    _timeToRead: 0
+    _useCustomFadeDuration: 0
+    _fadeDuration: 0
     _character: 0
     _text: Chapter 3 Dialog 3
